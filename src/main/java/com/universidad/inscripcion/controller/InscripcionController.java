@@ -39,4 +39,8 @@ public class InscripcionController {
     public List<Participante> listarPorEvento(@PathVariable Long eventoId) {
         return inscripcionService.listarInscritos(eventoId);
     }
+    @GetMapping("/eventos")
+    public List<Evento> listarEventos() {
+        return inscripcionService.listarEventos();
+    }
 }

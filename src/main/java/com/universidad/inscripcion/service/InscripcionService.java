@@ -1,13 +1,13 @@
 package com.universidad.inscripcion.service;
 
+import java.util.List;
+
+import org.springframework.stereotype.Service;
+
 import com.universidad.inscripcion.model.Evento;
 import com.universidad.inscripcion.model.Participante;
 import com.universidad.inscripcion.repository.EventoRepository;
-import com.universidad.inscripcion.repository.ParticipanteRepository;
-
-import java.util.List;
-
-import org.springframework.stereotype.Service; // Importante añadir esto
+import com.universidad.inscripcion.repository.ParticipanteRepository; // Importante añadir esto
 
 @Service
 public class InscripcionService {
@@ -41,7 +41,12 @@ public class InscripcionService {
     }
 
     public List<Participante> listarInscritos(Long eventoId) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'listarInscritos'");
+        Evento evento = eventoRepo.findById(eventoId)
+                .orElseThrow(() -> new RuntimeException("El evento no existe"));
+        return participanteRepo.findByEventoId(eventoId);
+
+    }
+    public List<Evento> listarEventos() {
+        return eventoRepo.findAll();
     }
 }
