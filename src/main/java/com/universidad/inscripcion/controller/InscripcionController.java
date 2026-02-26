@@ -21,12 +21,14 @@ public class InscripcionController {
     }
 
     @PostMapping("/registrar")
-    public Participante registrar(@RequestParam String nombre, @RequestParam Long eventoId) {
+    public Participante registrar(@RequestParam("nombre") String nombre, @RequestParam("eventoId") Long eventoId) {
         return inscripcionService.inscribir(nombre, eventoId);
     }
 
     @PostMapping("/eventos")
-    public Evento crearEvento(@RequestParam String nombre, @RequestParam int cupos) {
+    public Evento crearEvento(
+            @RequestParam("nombre") String nombre,
+            @RequestParam("cupos") int cupos) {
         Evento nuevoEvento = new Evento();
         nuevoEvento.setNombre(nombre);
         nuevoEvento.setCuposMaximos(cupos);
@@ -36,11 +38,18 @@ public class InscripcionController {
     }
 
     @GetMapping("/evento/{eventoId}")
-    public List<Participante> listarPorEvento(@PathVariable Long eventoId) {
+    public List<Participante> listarPorEvento(@PathVariable("eventoId") Long eventoId) {
         return inscripcionService.listarInscritos(eventoId);
     }
+
     @GetMapping("/eventos")
     public List<Evento> listarEventos() {
         return inscripcionService.listarEventos();
+    }
+
+    @DeleteMapping("/cancelar/{id}")
+    public String cancelar(@PathVariable("id") Long id) {
+        inscripcionService.cancelarInscripcion(id);
+        return "Inscripción cancelada correctamente";
     }
 }

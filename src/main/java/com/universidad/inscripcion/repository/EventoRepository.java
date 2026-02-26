@@ -1,6 +1,6 @@
 package com.universidad.inscripcion.repository;
 
-import com.universidad.inscripcion.model.Evento; // Importa Evento, no Participante
+import com.universidad.inscripcion.model.Evento;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
