@@ -6,7 +6,4 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface EventoRepository extends JpaRepository<Evento, Long> {
-    // JpaRepository<Evento, Long> significa:
-    // "Maneja la entidad Evento, cuya llave primaria (@Id) es de tipo Long"
-
 }

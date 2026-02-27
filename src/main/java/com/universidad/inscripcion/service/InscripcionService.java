@@ -42,6 +42,9 @@ public class InscripcionService {
     }
 
     public List<Participante> listarInscritos(Long eventoId) {
+        eventoRepo.findById(eventoId)
+                .orElseThrow(() -> new RuntimeException("El evento no existe"));
+
         return participanteRepo.findAll().stream()
                 .filter(p -> p.getEvento().getId().equals(eventoId))
                 .collect(Collectors.toList());
